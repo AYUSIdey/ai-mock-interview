@@ -4,11 +4,14 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import InterviewCard from "@/components/InterviewCard";
 
-import { getCurrentUser } from "@/lib/actions/auth.action";
+import SignOutButton from "@/components/SignOutButton";
+
+import {getCurrentUser} from "@/lib/actions/auth.action";
 import {
     getInterviewsByUserId,
     getLatestInterviews,
 } from "@/lib/actions/general.action";
+
 
 async function Home() {
     const user = await getCurrentUser();
@@ -21,11 +24,15 @@ async function Home() {
     const hasPastInterviews = userInterviews?.length! > 0;
     const hasUpcomingInterviews = allInterview?.length! > 0;
 
+
     return (
         <>
+            <div className="absolute top-4 right-4">
+                <SignOutButton />
+            </div>
             <section className="card-cta">
                 <div className="flex flex-col gap-6 max-w-lg">
-                    <h2>Get Interview-Ready with AI-Powered Practice & Feedback</h2>
+                    <h2>Get Interview-Ready with AI-Powered Mock Interview Tests & Feedback</h2>
                     <p className="text-lg">
                         Practice real interview questions & get instant feedback
                     </p>
